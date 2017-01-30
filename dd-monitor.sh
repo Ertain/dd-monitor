@@ -23,7 +23,9 @@ function usage {
 	echo "dd-monitor.sh write /dev/foo /path/to/sd_card_image.img"
 	echo "Note that \"read\" or \"write\" are mandatory"
 	}
-	
+
+script_root_directory=$(dirname "$0")
+
 if [ "$(id -u)" -ne 0 ]; then
   echo "Please run this script as root."
   usage
@@ -38,10 +40,10 @@ fi
 
 case "$1" in
     "read")
-       ./dd_read.sh "$2" "$3"
+       $script_root_directory/dd_read.sh "$2" "$3"
      ;;
      "write")
-       ./dd_write.sh "$2" "$3"
+       $script_root_directory/dd_write.sh "$2" "$3"
      ;;
      *)
        echo "Please pass the word \"read\" or \"write\" as the first argument."
