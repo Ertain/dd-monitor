@@ -51,9 +51,7 @@ if [ ! -b "$1" ]; then
   exit 3
 fi
 
-# TODO This should be changed to include a check for
-# whether the file is a disc image.
-if [ -f "$2" ]; then
+if [ -f "$2" ] && [ -b "$2" ]; then
     file_size=$(du -sb "$2" | awk '{print $1}')
     file_size=$((file_size/1024)) # This is  to convert it to kilobytes... I think.
 else
