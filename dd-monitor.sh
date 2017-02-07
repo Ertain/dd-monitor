@@ -21,12 +21,12 @@ function usage {
 	echo "Usage:"
 	echo "dd-monitor.sh read /dev/foo /path/to/sd_card_image.img"
 	echo "dd-monitor.sh write /dev/foo /path/to/sd_card_image.img"
-	echo "Note that \"read\" or \"write\" are mandatory"
+	echo "Note that \"read\" or \"write\" arguments are mandatory."
 	}
 
 script_root_directory=$(dirname "$0")
 
-if [ "$(id -u)" -ne 0 ]; then
+if [ "$1" == "write" ] && [ "$(id -u)" -ne 0 ]; then
   echo "Please run this script as root."
   usage
   exit 1
